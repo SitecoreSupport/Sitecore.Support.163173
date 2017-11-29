@@ -37,6 +37,16 @@ namespace Sitecore.Support.Data.ItemResolvers
                         break;
                     }
                 }
+                #region Sitecore.Support.163173
+                if (item == null)
+                {
+                    string[] name4 = this.Tokenize(item2.DisplayName.ToLowerInvariant());
+                    if (this.AreTokenizedNamesEqual(name2, name4))
+                    {
+                        item = this.ResolveRecursive(item2, subPaths2);
+                    }
+                }
+                #endregion
             }
             return item;
         }
