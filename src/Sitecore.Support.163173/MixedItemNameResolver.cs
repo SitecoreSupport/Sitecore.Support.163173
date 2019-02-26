@@ -1,19 +1,17 @@
-﻿using Sitecore.Configuration;
-using Sitecore.Data.ItemResolvers;
-using Sitecore.Data.Items;
-using Sitecore.Diagnostics;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace Sitecore.Support.Data.ItemResolvers
+﻿namespace Sitecore.Support.Data.ItemResolvers
 {
-    public class MixedItemNameResolver : Sitecore.Data.ItemResolvers.MixedItemNameResolver
+    using Sitecore.Configuration;
+    using Sitecore.Data.ItemResolvers;
+    using Sitecore.Data.Items;
+    using Sitecore.Diagnostics;
+    using System.Collections.Generic;
+    using System.Linq;
+
+    public class MixedItemNameResolver: Sitecore.Data.ItemResolvers.MixedItemNameResolver
     {
         public MixedItemNameResolver(ItemPathResolver defaultResolver) : base(defaultResolver)
         {
         }
-
         protected override Item ResolveRecursive(Item root, List<string> subPaths)
         {
             Assert.ArgumentNotNull(root, "root");
@@ -32,7 +30,11 @@ namespace Sitecore.Support.Data.ItemResolvers
                 if (this.AreTokenizedNamesEqual(name2, name3))
                 {
                     item = this.ResolveRecursive(item2, subPaths2);
-                    if (item != null || Settings.ItemResolving.FindBestMatch != MixedItemNameResolvingMode.DeepScan)
+                    if (item != null)
+                    {
+                        break;
+                    }
+                    if (Settings.ItemResolving.FindBestMatch != MixedItemNameResolvingMode.DeepScan)
                     {
                         break;
                     }

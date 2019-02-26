@@ -22,6 +22,7 @@
     <UseGlobalApplicationHostFile />
     <TargetFrameworkProfile />
     <LangVersion>6</LangVersion>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -41,6 +42,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\SC.Microsoft.Extensions.DependencyInjection.Abstractions.9.0.1\lib\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Sitecore.Kernel">
       <HintPath>..\packages\SC.Sitecore.Kernel.9.0.1\lib\Sitecore.Kernel.dll</HintPath>
       <Private>False</Private>
@@ -52,8 +57,8 @@
     <Reference Include="System.Configuration" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Data\ItemResolvers\MixedItemNameResolver.cs" />
-    <Compile Include="Pipelines\HttpRequest\ItemResolver.cs" />
+    <Compile Include="ItemResolver.cs" />
+    <Compile Include="MixedItemNameResolver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
